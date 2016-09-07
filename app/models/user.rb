@@ -3,5 +3,5 @@ class User < ActiveRecord::Base
   #automatically creates virtual fields
   #password and password_confrimation
   #authenticate method on each object
-
+  validates :password, presence: true, length: { minimum: 6 }
 end

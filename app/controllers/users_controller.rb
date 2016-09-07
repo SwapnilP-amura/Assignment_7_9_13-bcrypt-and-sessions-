@@ -1,5 +1,16 @@
 class UsersController < ApplicationController
+
+  before_action :logged_in_user,only:[:show,:edit,:update,:destroy,:index]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+
+  def logged_in_user
+      unless logged_in?
+        flash[:danger] = "Please log in."
+        redirect_to login_url
+        #this only fix access to non logged users to edit,update,delete,index,show
+        #checking only whether user logged in or not is not enough,
+      end
+  end
 
   # GET /users
   # GET /users.json
